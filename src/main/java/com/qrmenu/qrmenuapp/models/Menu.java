@@ -17,18 +17,21 @@ public class Menu {
     private UUID lastModifiedBy;
     private Date timestamp;
 
-    public Menu(UUID menuID, String menuDescription) {
-        this.menuID = menuID;
+    public Menu() {
+        this.menuID = UUID.randomUUID();
+    }
+
+    public Menu(String menuDescription) {
+        this();
         this.menuDescription = menuDescription;
     }
 
-    public Menu(UUID menuID, String menuDescription, boolean menuStatus, Date lastModifiedTime, UUID lastModifiedBy, Date timestamp) {
-        this.menuID = menuID;
+    public Menu(String menuDescription, boolean menuStatus, UUID lastModifiedBy) {
+        this();
         this.menuDescription = menuDescription;
         this.menuStatus = menuStatus;
-        this.lastModifiedTime = lastModifiedTime;
         this.lastModifiedBy = lastModifiedBy;
-        this.timestamp = timestamp;
+
     }
 
     public UUID getMenuID() {
