@@ -1,6 +1,6 @@
 package com.qrmenu.qrmenuapp.repositories;
 
-import com.qrmenu.qrmenuapp.beans.Menu;
+import com.qrmenu.qrmenuapp.models.Menu;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;

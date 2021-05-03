@@ -1,4 +1,4 @@
-package com.qrmenu.qrmenuapp.beans;
+package com.qrmenu.qrmenuapp.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -37,7 +37,7 @@ public class Employee {
         this.lastModifiedDate = lastModifiedDate;
         this.timestamp = timestamp;
     }
-
+    
     @Override
     public String toString() {
         return "Employee{" +
