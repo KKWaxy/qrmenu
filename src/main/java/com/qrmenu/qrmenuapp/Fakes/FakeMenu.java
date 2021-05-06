@@ -21,8 +21,8 @@ public class FakeMenu implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Menu menu1 = new Menu(UUID.randomUUID(),"Fotou bien fait !");
-        this.menuRepository.save(menu1);
+        Menu menu5 = new Menu(UUID.randomUUID(),"Fotou bien fait !");
+        this.menuRepository.save(menu5);
 
     }
 }
