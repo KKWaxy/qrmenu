@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.UUID;
 
 @Component
@@ -19,10 +21,12 @@ public class FakeMenu implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args)  {
 
-        Menu menu5 = new Menu(UUID.randomUUID(),"Fotou bien fait !");
-        this.menuRepository.save(menu5);
+        Menu menuBon = new Menu(UUID.randomUUID(),"Fotou bien fait !");
+        menuBon.setTimestamp(Date.from(Instant.now()));
+        menuBon.setLastModifiedTime(menuBon.getTimestamp());
+        this.menuRepository.save(menuBon);
 
     }
 }

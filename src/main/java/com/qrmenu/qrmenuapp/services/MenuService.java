@@ -4,6 +4,7 @@ import com.qrmenu.qrmenuapp.models.Menu;
 import com.qrmenu.qrmenuapp.repositories.MenuRepository;
 import com.qrmenu.qrmenuapp.utils.qrmenuexceptions.Exists;
 import com.qrmenu.qrmenuapp.utils.qrmenuexceptions.ObjectDoesExists;
+import com.qrmenu.qrmenuapp.utils.qrmenuexceptions.QrMenuObjectNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,9 @@ public class MenuService {
         if(menu.getMenuID() == null || !this.menuRepository.existsById(menu.getMenuID())){
             menu.setMenuID(UUID.randomUUID());
             menu.setTimestamp(Date.from(Instant.now()));
+            menu.setTimestamp(Date.from(Instant.now()));
+            menu.setLastModifiedTime(menu.getTimestamp());
+
             this.menuRepository.save(menu);
         }else{
             throw new  ObjectDoesExists(menu);
@@ -45,7 +49,7 @@ public class MenuService {
 
     public void modifiedMenu(Menu menu) throws Exists {
         if(this.getMenuById(menu.getMenuID())==null){
-            throw new Exists(menu.toString()+"Does not exist.");
+            throw new QrMenuObjectNotExistException();
         }
         this.menuRepository.save(menu);
     }
