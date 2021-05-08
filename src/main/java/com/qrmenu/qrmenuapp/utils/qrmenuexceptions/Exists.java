@@ -1,4 +1,4 @@
-package com.qrmenu.qrmenuapp.utils.constants.qrmenuexceptions;
+package com.qrmenu.qrmenuapp.utils.qrmenuexceptions;
 
 public class Exists extends Exception{
     public Exists() {
