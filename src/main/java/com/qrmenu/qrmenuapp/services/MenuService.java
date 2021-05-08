@@ -2,11 +2,13 @@ package com.qrmenu.qrmenuapp.services;
 
 import com.qrmenu.qrmenuapp.models.Menu;
 import com.qrmenu.qrmenuapp.repositories.MenuRepository;
-import com.qrmenu.qrmenuapp.utils.constants.qrmenuexceptions.Exists;
-import com.qrmenu.qrmenuapp.utils.constants.qrmenuexceptions.ObjectDoesExists;
+import com.qrmenu.qrmenuapp.utils.qrmenuexceptions.Exists;
+import com.qrmenu.qrmenuapp.utils.qrmenuexceptions.ObjectDoesExists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -24,6 +26,7 @@ public class MenuService {
 
         if(menu.getMenuID() == null || !this.menuRepository.existsById(menu.getMenuID())){
             menu.setMenuID(UUID.randomUUID());
+            menu.setTimestamp(Date.from(Instant.now()));
             this.menuRepository.save(menu);
         }else{
             throw new  ObjectDoesExists(menu);
