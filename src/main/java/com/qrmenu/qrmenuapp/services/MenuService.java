@@ -74,4 +74,8 @@ public class MenuService {
         this.menuRepository.saveAll(menus);
         return 0;
     }
+
+    public void deleteAll(){
+        this.menuRepository.deleteAll();
+    }
 }

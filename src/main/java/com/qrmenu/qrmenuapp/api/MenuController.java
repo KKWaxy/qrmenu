@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("menu/")
+@RequestMapping("/menu")
 public class MenuController {
 
     private final MenuService menuService;
@@ -21,19 +21,24 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @GetMapping("all/")
+    @GetMapping("/all/")
     public List<Menu> allMenu(){
         return this.menuService.getAllMenu();
     }
 
-    @PostMapping("/newMenu")
+    @PostMapping("/newMenu/")
     public Menu newMenu(@RequestBody Menu menu) throws ObjectDoesExists {
         return this.menuService.addMenu(menu);
     }
 
-    @DeleteMapping("/{menuId}")
+    @DeleteMapping("/{menuId}/")
     public void delMenuById(@PathVariable("menuId")UUID menuId){
         this.menuService.deleteMenuById(menuId);
+    }
+
+    @DeleteMapping("/remove-all/")
+    public void deleteAll(){
+        this.menuService.deleteAll();
     }
 
 }
