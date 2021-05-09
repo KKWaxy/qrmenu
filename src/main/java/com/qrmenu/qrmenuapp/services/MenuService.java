@@ -55,13 +55,12 @@ public class MenuService {
     }
 
     public void deleteMenuById(UUID menuId){
-        if(menuId != null){
-            this.menuRepository.deleteById(menuId);
-        }else {
-
-        }
+        this.menuRepository.deleteById(menuId);
     }
 
+    public void deleteMenu(Menu menu){
+        this.menuRepository.delete(menu);
+    }
     public int deleteAllMenu(){
         this.menuRepository.deleteAll();
         return 0;

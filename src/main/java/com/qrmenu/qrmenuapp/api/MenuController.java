@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin("*")
 @RestController
@@ -29,4 +30,10 @@ public class MenuController {
     public Menu newMenu(@RequestBody Menu menu) throws ObjectDoesExists {
         return this.menuService.addMenu(menu);
     }
+
+    @DeleteMapping("/{menuId}")
+    public void delMenuById(@PathVariable("menuId")UUID menuId){
+        this.menuService.deleteMenuById(menuId);
+    }
+
 }
