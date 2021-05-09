@@ -61,9 +61,8 @@ public class MenuService {
     public void deleteMenu(Menu menu){
         this.menuRepository.delete(menu);
     }
-    public int deleteAllMenu(){
+    public void deleteAllMenu(){
         this.menuRepository.deleteAll();
-        return 0;
     }
 
     public void deleteAllMenu(List<Menu> menus){
