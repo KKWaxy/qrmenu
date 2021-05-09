@@ -26,7 +26,7 @@ public class MenuController {
     }
 
     @PostMapping("/newMenu")
-    public void newMenu(@RequestBody Menu menu) throws ObjectDoesExists {
-        this.menuService.addMenu(menu);
+    public Menu newMenu(@RequestBody Menu menu) throws ObjectDoesExists {
+        return this.menuService.addMenu(menu);
     }
 }
