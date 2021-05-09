@@ -41,4 +41,9 @@ public class MenuController {
         this.menuService.deleteAll();
     }
 
+    @PatchMapping("/alterMenu/")
+    public Menu modifiedMenu(@RequestBody Menu menu){
+        return this.menuService.modifiedMenu(menu);
+    }
+
 }

@@ -47,11 +47,11 @@ public class MenuService {
                 .orElse(null);
     }
 
-    public void modifiedMenu(Menu menu) throws Exists {
+    public Menu modifiedMenu(Menu menu) throws QrMenuObjectNotExistException {
         if(this.getMenuById(menu.getMenuID())==null){
             throw new QrMenuObjectNotExistException();
         }
-        this.menuRepository.save(menu);
+        return this.menuRepository.save(menu);
     }
 
     public void deleteMenuById(UUID menuId){
