@@ -23,7 +23,7 @@ public class MenuService {
         this.menuRepository = menuRepository;
     }
 
-    public void addMenu(Menu menu) throws ObjectDoesExists {
+    public Menu addMenu(Menu menu) throws ObjectDoesExists {
 
         if(menu.getMenuID() == null || !this.menuRepository.existsById(menu.getMenuID())){
             menu.setMenuID(UUID.randomUUID());
@@ -31,7 +31,7 @@ public class MenuService {
             menu.setTimestamp(Date.from(Instant.now()));
             menu.setLastModifiedTime(menu.getTimestamp());
 
-            this.menuRepository.save(menu);
+            return this.menuRepository.save(menu);
         }else{
             throw new  ObjectDoesExists(menu);
         }
@@ -47,21 +47,20 @@ public class MenuService {
                 .orElse(null);
     }
 
-    public void modifiedMenu(Menu menu) throws Exists {
+    public Menu modifiedMenu(Menu menu) throws QrMenuObjectNotExistException {
         if(this.getMenuById(menu.getMenuID())==null){
             throw new QrMenuObjectNotExistException();
         }
-        this.menuRepository.save(menu);
+        return this.menuRepository.save(menu);
     }
 
     public void deleteMenuById(UUID menuId){
-        if(menuId != null){
-            this.menuRepository.deleteById(menuId);
-        }else {
-
-        }
+        this.menuRepository.deleteById(menuId);
     }
 
+    public void deleteMenu(Menu menu){
+        this.menuRepository.delete(menu);
+    }
     public int deleteAllMenu(){
         this.menuRepository.deleteAll();
         return 0;
@@ -74,5 +73,9 @@ public class MenuService {
     public int addAll(List<Menu> menus){
         this.menuRepository.saveAll(menus);
         return 0;
+    }
+
+    public void deleteAll(){
+        this.menuRepository.deleteAll();
     }
 }
