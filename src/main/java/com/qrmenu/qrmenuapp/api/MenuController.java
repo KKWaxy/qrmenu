@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("menu/")
+@RequestMapping("/menu")
 public class MenuController {
 
     private final MenuService menuService;
@@ -20,13 +21,29 @@ public class MenuController {
         this.menuService = menuService;
     }
 
-    @GetMapping("all/")
+    @GetMapping("/all/")
     public List<Menu> allMenu(){
         return this.menuService.getAllMenu();
     }
 
-    @PostMapping("/newMenu")
-    public void newMenu(@RequestBody Menu menu) throws ObjectDoesExists {
-        this.menuService.addMenu(menu);
+    @PostMapping("/newMenu/")
+    public Menu newMenu(@RequestBody Menu menu) throws ObjectDoesExists {
+        return this.menuService.addMenu(menu);
     }
+
+    @DeleteMapping("/{menuId}/")
+    public void delMenuById(@PathVariable("menuId")UUID menuId){
+        this.menuService.deleteMenuById(menuId);
+    }
+
+    @DeleteMapping("/remove-all/")
+    public void deleteAll(){
+        this.menuService.deleteAll();
+    }
+
+    @PatchMapping("/alterMenu/")
+    public Menu modifiedMenu(@RequestBody Menu menu){
+        return this.menuService.modifiedMenu(menu);
+    }
+
 }
